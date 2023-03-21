@@ -19,7 +19,9 @@ ArrayList<Producto> productos = (ArrayList<Producto>)request.getAttribute("produ
 for(int i = 0; i < productos.size(); i++ ){
 	out.println(productos.get(i).getNombre() + " - ");
 	%>
-	<a href="${pageContext.request.contextPath}/EditarProducto?id=<% out.println(productos.get(i).getId()); %>">Editar</a> - 
+	<a href="${pageContext.request.contextPath}/EditarProducto?id=<% out.print(productos.get(i).getId());%>">Editar</a> - 
+	<a href="${pageContext.request.contextPath}/EditarProducto?id=<%=productos.get(i).getId()%>">Editar2</a> - 
+	<a href="${pageContext.request.contextPath}/EditarProducto?id=${productos.get(i).id}">Editar3</a> - 
 	<a href="${pageContext.request.contextPath}/EliminarProducto?id=<% out.println(productos.get(i).getId()); %>">Eliminar</a>
 	<%
 	out.println("<br>");
