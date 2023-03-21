@@ -28,13 +28,17 @@ public class EditarProducto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//recibir datos
 		int id = Integer.parseInt(request.getParameter("id"));
 		
+		//conseguir datos con la id
 		ProductoModelo pm = new ProductoModelo();
 		pm.conectar();
+		//preparar datos para enviar a la vista
 		request.setAttribute("producto", pm.get(id));
 		pm.cerrar();
 		
+		//abir vista
 		request.getRequestDispatcher("formEdicion.jsp").forward(request, response);
 	}
 

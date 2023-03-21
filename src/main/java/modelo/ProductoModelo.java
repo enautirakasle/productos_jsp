@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.mysql.cj.xdevapi.Result;
 
 public class ProductoModelo extends Conector {
 

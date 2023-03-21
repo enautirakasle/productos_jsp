@@ -37,12 +37,14 @@ public class UpdateProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//recoger parametros
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre =request.getParameter("nombre");
 		String codigo = request.getParameter("codigo");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		
+		//crear el producto
 		Producto producto = new Producto();
 		producto.setId(id);
 		producto.setNombre(nombre);
@@ -50,11 +52,13 @@ public class UpdateProducto extends HttpServlet {
 		producto.setCantidad(cantidad);
 		producto.setPrecio(precio);
 		
+		//modificar el producto en la BBDD
 		ProductoModelo pm = new ProductoModelo();
 		pm.conectar();
 		pm.modificar(producto);
 		pm.cerrar();
 		
+		//redirigir al controlador Principal
 //		response.sendRedirect(request.getContextPath() + "/alimentos");		
 		response.sendRedirect(request.getContextPath() + "/Principal");
 		

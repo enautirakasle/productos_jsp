@@ -29,13 +29,16 @@ public class EliminarProducto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//recoger parametos o datos
 		int id = Integer.parseInt(request.getParameter("id"));
 
+		//eliminarlo de la BBDD
 		ProductoModelo pm = new ProductoModelo();
 		pm.conectar();
 		pm.eliminar(id);
 		pm.cerrar();
 
+		//llamar a controlador-redirigir
 		response.sendRedirect(request.getContextPath() + "/Principal");
 	}
 

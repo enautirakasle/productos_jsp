@@ -27,12 +27,13 @@ public class Principal extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//conseguir datos de la BBDD y prepararlos para enviar a la vista
 		ProductoModelo pm = new ProductoModelo();
-		
 		pm.conectar();
 		request.setAttribute("productos", pm.productos());
 		pm.cerrar();
 		
+		//abir vista
 		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 	}
 

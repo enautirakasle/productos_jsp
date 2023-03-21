@@ -38,22 +38,26 @@ public class CrearProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//recoger parametros
 		String nombre =request.getParameter("nombre");
 		String codigo = request.getParameter("codigo");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		
+		//crear el objeto
 		Producto producto = new Producto();
 		producto.setNombre(nombre);
 		producto.setCodigo(codigo);
 		producto.setCantidad(cantidad);
 		producto.setPrecio(precio);
 		
+		//insert en la BBDD
 		ProductoModelo pm = new ProductoModelo();
 		pm.conectar();
 		pm.insertar(producto);
 		pm.cerrar();
 		
+		//abrir otro controlador
 //		response.sendRedirect(request.getContextPath() + "/alimentos");		
 		response.sendRedirect(request.getContextPath() + "/Principal");
 	}
