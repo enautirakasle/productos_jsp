@@ -161,7 +161,7 @@ public class ProductoModelo extends Conector {
 	}
 
 	public void insertar(Producto producto) {
-		String sql = "INSERT INTO productos(codigo, nombre, cantidad, precio) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO productos(codigo, nombre, cantidad, precio, id_seccion) VALUES (?, ?, ?, ?, ?)";
 		PreparedStatement pst;
 		
 		try {
@@ -170,6 +170,7 @@ public class ProductoModelo extends Conector {
 			pst.setString(2, producto.getNombre());
 			pst.setInt(3, producto.getCantidad());
 			pst.setDouble(4, producto.getPrecio());
+			pst.setInt(5, producto.getSeccion().getId());
 			
 			pst.execute();
 		} catch (SQLException e) {
