@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.ArrayList" %>
     <%@ page import="modelo.Producto" %>
+    <%@ page import="modelo.Seccion" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,14 +16,15 @@
       <div class="col">
 <%
 ArrayList<Producto> productos = (ArrayList<Producto>)request.getAttribute("productos");
+ArrayList<Seccion> secciones = (ArrayList<Seccion>)request.getAttribute("secciones");
 
 for(int i = 0; i < productos.size(); i++ ){
 	out.println(productos.get(i).getNombre() + " - ");
 	%>
 	<a href="${pageContext.request.contextPath}/EditarProducto?id=<% out.println(productos.get(i).getId()); %>">Editar</a> - 
 	<a href="${pageContext.request.contextPath}/EliminarProducto?id=<% out.println(productos.get(i).getId()); %>">Eliminar</a>
+	<br>
 	<%
-	out.println("<br>");
 }
 %>
 <br>
@@ -32,6 +34,17 @@ for(int i = 0; i < productos.size(); i++ ){
 	cantidad: <input type="text" name="cantidad"/><br>
 	precio: <input type="text" name="precio"/><br>
 	
+	seccion: <select name="seccion">
+	<option value="0"></option>
+	<%
+	for(int i=0; i < secciones.size(); i++){
+	%>
+		<option value="<%out.print(secciones.get(i).getId());%>"><%out.print(secciones.get(i).getNombre());%></option>
+	<%
+	}
+	%>
+	</select>
+		
 	<input type="submit" value="Guardar" name="Guardar">
 </form>
 </div>
