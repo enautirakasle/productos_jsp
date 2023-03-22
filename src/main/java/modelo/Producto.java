@@ -7,6 +7,8 @@ public class Producto {
 	private Double precio;
 	private int cantidad;
 	
+	private Seccion seccion;
+	
 	public int getId() {
 		return id;
 	}
@@ -36,6 +38,12 @@ public class Producto {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	public Seccion getSeccion() {
+		return seccion;
+	}
+	public void setSeccion(Seccion seccion) {
+		this.seccion = seccion;
 	}
 	
 	
