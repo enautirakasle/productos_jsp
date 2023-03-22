@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ModeloSeccion extends Conector{
+public class SeccionModelo extends Conector{
 	
 	public ArrayList<Seccion> secciones() {
 		String sql = "SELECT * FROM secciones";
