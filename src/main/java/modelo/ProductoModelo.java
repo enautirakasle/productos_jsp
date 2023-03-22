@@ -57,7 +57,7 @@ public class ProductoModelo extends Conector {
 	}
 
 	public boolean modificar(Producto producto) {
-		String sql = "UPDATE productos SET codigo=?, nombre=?, cantidad=?, precio=? WHERE id=?";
+		String sql = "UPDATE productos SET codigo=?, nombre=?, cantidad=?, precio=?, id_seccion=? WHERE id=?";
 		PreparedStatement pst;
 		try {
 			pst = con.prepareStatement(sql);
@@ -65,7 +65,8 @@ public class ProductoModelo extends Conector {
 			pst.setString(2, producto.getNombre());
 			pst.setInt(3, producto.getCantidad());
 			pst.setDouble(4, producto.getPrecio());
-			pst.setInt(5, producto.getId());
+			pst.setInt(5, producto.getSeccion().getId());
+			pst.setInt(6, producto.getId());
 			pst.execute();
 			return true;
 		} catch (SQLException e) {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Producto;
 import modelo.ProductoModelo;
+import modelo.Seccion;
 
 /**
  * Servlet implementation class UpdateProducto
@@ -43,6 +44,9 @@ public class UpdateProducto extends HttpServlet {
 		String codigo = request.getParameter("codigo");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
+		int id_seccion = Integer.parseInt(request.getParameter("seccion"));
+
+		
 		
 		//crear el producto
 		Producto producto = new Producto();
@@ -51,6 +55,9 @@ public class UpdateProducto extends HttpServlet {
 		producto.setCodigo(codigo);
 		producto.setCantidad(cantidad);
 		producto.setPrecio(precio);
+		Seccion seccion = new Seccion();
+		seccion.setId(id_seccion);
+		producto.setSeccion(seccion);
 		
 		//modificar el producto en la BBDD
 		ProductoModelo pm = new ProductoModelo();

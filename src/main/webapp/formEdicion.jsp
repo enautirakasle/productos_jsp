@@ -28,14 +28,14 @@ ArrayList<Seccion> secciones = (ArrayList<Seccion>)request.getAttribute("seccion
 	codigo: <input type="text" name="codigo" value="<%	out.println(producto.getCodigo());%>"/><br>
 	cantidad: <input type="text" name="cantidad" value="<%	out.println(producto.getCantidad());%>"/><br>
 	precio: <input type="text" name="precio" value="<%	out.println(producto.getPrecio());%>"/><br>
-		seccion:<select>
+		seccion:<select name="seccion">
 	<option value="0"></option>
 	<%
 	for(Seccion seccion : secciones){ 
 		 if(seccion.getId() == producto.getSeccion().getId()){%>
-			<option value="<%out.println(seccion.getId());%>" selected><%out.println(seccion.getNombre());%></option>
+			<option value="<%out.print(seccion.getId());%>" selected><%out.print(seccion.getNombre());%></option>
 		<% }else{%>
-			<option value="<%out.println(seccion.getId());%>"><%out.println(seccion.getNombre());%></option>
+			<option value="<%out.print(seccion.getId());%>"><%out.print(seccion.getNombre());%></option>
 		<%}//else
 		
 	}//for
