@@ -125,6 +125,9 @@ public class ProductoModelo extends Conector {
 				producto.setNombre(rs.getString("nombre"));
 				producto.setCantidad(rs.getInt("cantidad"));
 				producto.setPrecio(rs.getDouble("precio"));
+				Seccion s = new Seccion();
+				s.setId(rs.getInt("id_seccion"));
+				producto.setSeccion(s);
 				return producto;
 			}
 			
