@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ProductoModelo;
+import modelo.SeccionModelo;
 
 /**
  * Servlet implementation class Principal
@@ -32,6 +33,11 @@ public class Principal extends HttpServlet {
 		pm.conectar();
 		request.setAttribute("productos", pm.productos());
 		pm.cerrar();
+		
+		SeccionModelo sm = new SeccionModelo();
+		sm.conectar();
+		request.setAttribute("secciones", sm.secciones());
+		sm.cerrar();
 		
 		//abir vista
 		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
