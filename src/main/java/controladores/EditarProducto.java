@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ProductoModelo;
+import modelo.SeccionModelo;
 
 /**
  * Servlet implementation class EditarProducto
@@ -37,6 +38,11 @@ public class EditarProducto extends HttpServlet {
 		//preparar datos para enviar a la vista
 		request.setAttribute("producto", pm.get(id));
 		pm.cerrar();
+		
+		SeccionModelo sm = new SeccionModelo();
+		sm.conectar();
+		request.setAttribute("secciones", sm.secciones());
+		sm.cerrar();
 		
 		//abir vista
 		request.getRequestDispatcher("formEdicion.jsp").forward(request, response);
