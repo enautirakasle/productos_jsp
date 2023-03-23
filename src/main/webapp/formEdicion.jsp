@@ -22,7 +22,7 @@ ArrayList<Seccion> secciones = (ArrayList<Seccion>)request.getAttribute("seccion
 /* out.println(secciones);
  */
 %>
-<form action="${pageContext.request.contextPath}/UpdateProducto" method="post">
+<form action="UpdateProducto" method="post">
 	id: <input type="text" name="id" value="<%	out.println(producto.getId());%>"/><br>
 	nombre: <input type="text" name="nombre" value="<%	out.println(producto.getNombre());%>"/><br>
 	codigo: <input type="text" name="codigo" value="<%	out.println(producto.getCodigo());%>"/><br>
@@ -43,7 +43,7 @@ ArrayList<Seccion> secciones = (ArrayList<Seccion>)request.getAttribute("seccion
 	</select>
 	<input type="submit" value="Guardar" name="Guardar">
 </form>
-<a href="${pageContext.request.contextPath}/Principal">Volver</a>
+<a href="Principal">Volver</a>
 </div>
 </div>
 </div>
