@@ -14,19 +14,17 @@
 <div class="container">
   <div class="row">
       <div class="col">
-<%
-Producto producto = (Producto)request.getAttribute("producto");
-%>
-<form action="${pageContext.request.contextPath}/UpdateProducto" method="post">
-	id: <input type="text" name="id" value="<%	out.println(producto.getId());%>"/><br>
-	nombre: <input type="text" name="nombre" value="<%	out.println(producto.getNombre());%>"/><br>
-	codigo: <input type="text" name="codigo" value="<%	out.println(producto.getCodigo());%>"/><br>
-	cantidad: <input type="text" name="cantidad" value="<%	out.println(producto.getCantidad());%>"/><br>
-	precio: <input type="text" name="precio" value="<%	out.println(producto.getPrecio());%>"/><br>
+
+<form action="UpdateProducto" method="post">
+	id: <input type="text" name="id" value="${producto.id}"/><br>
+	nombre: <input type="text" name="nombre" value="${producto.nombre}"/><br>
+	codigo: <input type="text" name="codigo" value="${producto.codigo}"/><br>
+	cantidad: <input type="text" name="cantidad" value="${producto.cantidad}"/><br>
+	precio: <input type="text" name="precio" value="${producto.precio}"/><br>
 	
 	<input type="submit" value="Guardar" name="Guardar">
 </form>
-<a href="${pageContext.request.contextPath}/Principal">Volver</a>
+<a href="Principal">Volver</a>
 </div>
 </div>
 </div>
