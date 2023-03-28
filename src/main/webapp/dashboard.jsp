@@ -19,16 +19,16 @@ ArrayList<Producto> productos = (ArrayList<Producto>)request.getAttribute("produ
 ArrayList<Seccion> secciones = (ArrayList<Seccion>)request.getAttribute("secciones");
 
 for(int i = 0; i < productos.size(); i++ ){
-	out.println(productos.get(i).getNombre() + " - ");
+	out.println(productos.get(i).getNombre() + " - seccion: " + productos.get(i).getSeccion().getNombre() );
 	%>
-	<a href="${pageContext.request.contextPath}/EditarProducto?id=<% out.println(productos.get(i).getId()); %>">Editar</a> - 
-	<a href="${pageContext.request.contextPath}/EliminarProducto?id=<% out.println(productos.get(i).getId()); %>">Eliminar</a>
+	<a href="EditarProducto?id=<% out.println(productos.get(i).getId()); %>">Editar</a> - 
+	<a href="EliminarProducto?id=<% out.println(productos.get(i).getId()); %>">Eliminar</a>
 	<br>
 	<%
 }
 %>
 <br>
-<form action="${pageContext.request.contextPath}/CrearProducto" method="post">
+<form action="CrearProducto" method="post">
 	nombre: <input type="text" name="nombre"/><br>
 	codigo: <input type="text" name="codigo"/><br>
 	cantidad: <input type="text" name="cantidad"/><br>

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class ProductoModelo extends Conector {
 
 	public ArrayList<Producto> productos() {
+		SeccionModelo sm = new SeccionModelo();
+		sm.setCon(con);
 		String sql = "SELECT * FROM productos";
 		Statement st;
 
@@ -26,6 +28,7 @@ public class ProductoModelo extends Conector {
 				p.setCodigo(rs.getString("codigo"));
 				p.setPrecio(rs.getDouble("precio"));
 				p.setCantidad(rs.getInt("cantidad"));
+				p.setSeccion(sm.seccion(rs.getInt("id_seccion")));
 				productos.add(p);
 			}
 		} catch (SQLException e) {

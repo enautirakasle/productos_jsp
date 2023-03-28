@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +30,28 @@ public class SeccionModelo extends Conector{
 		}
 
 		return secciones;
+	}
+
+	public Seccion seccion(int id) {
+		String sql = "select * from secciones where id = ?";
+		PreparedStatement pst;
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				Seccion seccion = new Seccion();
+				seccion.setId(rs.getInt("id"));
+				seccion.setNombre(rs.getString("nombre"));
+				return seccion;
+			}
+			
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
