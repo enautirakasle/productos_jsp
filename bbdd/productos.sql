@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2023 a las 13:25:01
+-- Tiempo de generación: 09-05-2023 a las 14:46:53
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -54,6 +54,18 @@ INSERT INTO `productos` (`id`, `codigo`, `nombre`, `cantidad`, `precio`, `caduci
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `productos_supermercados`
+--
+
+CREATE TABLE `productos_supermercados` (
+  `id` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_supermercado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `secciones`
 --
 
@@ -72,6 +84,27 @@ INSERT INTO `secciones` (`id`, `nombre`) VALUES
 (3, 'bazar'),
 (4, 'ferreteria');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `supermercados`
+--
+
+CREATE TABLE `supermercados` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `supermercados`
+--
+
+INSERT INTO `supermercados` (`id`, `nombre`) VALUES
+(1, 'eroski'),
+(2, 'mercadona'),
+(3, 'aldi'),
+(4, 'bm');
+
 --
 -- Índices para tablas volcadas
 --
@@ -83,9 +116,23 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `productos_supermercados`
+--
+ALTER TABLE `productos_supermercados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_producto` (`id_producto`),
+  ADD KEY `id_supermercado` (`id_supermercado`);
+
+--
 -- Indices de la tabla `secciones`
 --
 ALTER TABLE `secciones`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `supermercados`
+--
+ALTER TABLE `supermercados`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -99,10 +146,33 @@ ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT de la tabla `productos_supermercados`
+--
+ALTER TABLE `productos_supermercados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `secciones`
 --
 ALTER TABLE `secciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `supermercados`
+--
+ALTER TABLE `supermercados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `productos_supermercados`
+--
+ALTER TABLE `productos_supermercados`
+  ADD CONSTRAINT `productos_supermercados_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `productos_supermercados_ibfk_2` FOREIGN KEY (`id_supermercado`) REFERENCES `supermercados` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
