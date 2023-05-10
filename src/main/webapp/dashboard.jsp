@@ -46,6 +46,7 @@ for(int i = 0; i < productos.size(); i++ ){
 	}
 	%>
 	</select>
+	<br><br>
 	
 	<%
 	for(int i = 0; i < supermercados.size(); i++){
@@ -54,7 +55,7 @@ for(int i = 0; i < productos.size(); i++ ){
 	<%	
 	}
 	%>
-		
+		<br>
 	<input type="submit" value="Guardar" name="Guardar">
 </form>
 </div>
