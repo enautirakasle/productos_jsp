@@ -51,7 +51,7 @@ for(int i = 0; i < productos.size(); i++ ){
 	<%
 	for(int i = 0; i < supermercados.size(); i++){
 		%>
-		<input type="checkbox" name="supermercados[]" value="<%out.println(supermercados.get(i).getId());%>"> <%out.println(supermercados.get(i).getNombre()); %>
+		<input type="checkbox" name="supermercados" value="<%out.print(supermercados.get(i).getId());%>"> <%out.println(supermercados.get(i).getNombre()); %>
 	<%	
 	}
 	%>
