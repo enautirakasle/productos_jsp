@@ -45,6 +45,7 @@ public class CrearProducto extends HttpServlet {
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		int id_seccion = Integer.parseInt(request.getParameter("seccion"));
+		String[] supermercados = request.getParameterValues("supermercados");
 		
 		//crear el objeto
 		Producto producto = new Producto();
