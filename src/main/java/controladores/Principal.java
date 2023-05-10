@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.ProductoModelo;
 import modelo.SeccionModelo;
+import modelo.SupermercadoModelo;
 
 /**
  * Servlet implementation class Principal
@@ -38,6 +39,11 @@ public class Principal extends HttpServlet {
 		sm.conectar();
 		request.setAttribute("secciones", sm.secciones());
 		sm.cerrar();
+		
+		SupermercadoModelo supm = new SupermercadoModelo();
+		supm.conectar();
+		request.setAttribute("supermercados", supm.supermercados());
+		supm.cerrar();
 		
 		//abir vista
 		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
