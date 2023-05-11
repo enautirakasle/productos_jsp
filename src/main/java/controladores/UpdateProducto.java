@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.Arrays;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +48,10 @@ public class UpdateProducto extends HttpServlet {
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		int id_seccion = Integer.parseInt(request.getParameter("seccion"));
 
-		
+		String[] idsStringSupermercados = request.getParameterValues("supermercados");
+		int[] idsSupermercados = Arrays.stream(idsStringSupermercados)
+                .mapToInt(Integer::parseInt)
+                .toArray();
 		
 		//crear el producto
 		Producto producto = new Producto();

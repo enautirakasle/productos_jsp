@@ -3,6 +3,7 @@
     <%@ page import="java.util.ArrayList" %>
     <%@ page import="modelo.Producto" %>
     <%@ page import="modelo.Seccion" %>
+    <%@ page import="modelo.Supermercado" %>
     
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,7 @@
 <%
 Producto producto = (Producto)request.getAttribute("producto");
 ArrayList<Seccion> secciones = (ArrayList<Seccion>)request.getAttribute("secciones");
+ArrayList<Supermercado> supermercados = (ArrayList<Supermercado>)request.getAttribute("supermercados");
 /* out.println(secciones);
  */
 %>
@@ -41,6 +43,19 @@ ArrayList<Seccion> secciones = (ArrayList<Seccion>)request.getAttribute("seccion
 	}//for
 	%>
 	</select>
+	
+	<br><br>
+	
+	<%
+	for(int i = 0; i < supermercados.size(); i++){
+		for(int j = 0; j < supermercados.get(i))
+		%>
+		<input type="checkbox" name="supermercados" value="<%out.print(supermercados.get(i).getId());%>"> <%out.println(supermercados.get(i).getNombre()); %>
+	<%	
+	}
+	%>
+		<br>
+	
 	<input type="submit" value="Guardar" name="Guardar">
 </form>
 <a href="Principal">Volver</a>
