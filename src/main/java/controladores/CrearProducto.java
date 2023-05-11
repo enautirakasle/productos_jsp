@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.Arrays;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +47,10 @@ public class CrearProducto extends HttpServlet {
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		int id_seccion = Integer.parseInt(request.getParameter("seccion"));
-		String[] supermercados = request.getParameterValues("supermercados");
+		String[] idsStringSupermercados = request.getParameterValues("supermercados");
+		int[] idsSupermercados = Arrays.stream(idsStringSupermercados)
+                .mapToInt(Integer::parseInt)
+                .toArray();
 		
 		//crear el objeto
 		Producto producto = new Producto();
@@ -61,6 +66,7 @@ public class CrearProducto extends HttpServlet {
 		ProductoModelo pm = new ProductoModelo();
 		pm.conectar();
 		pm.insertar(producto);
+		pm.productoSupermercados(pm.buscar(codigo).getId(), idsSupermercados);
 		pm.cerrar();
 		
 		//abrir otro controlador

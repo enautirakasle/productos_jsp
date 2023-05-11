@@ -186,5 +186,32 @@ public class ProductoModelo extends Conector {
 		
 		
 	}
+	
+	public boolean productoEnSupermercado(int idProducto, int idSupermercado) {
+		PreparedStatement pst = null;
+		String sql = "INSERT INTO productos_supermercados (id_producto, id_supermercado) VALUES (?, ?)";
+		try {
+			pst = con.prepareStatement(sql);
+			
+			pst.setInt(1, idProducto);
+			pst.setInt(2, idSupermercado);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean productoSupermercados(int idProducto, int[] idsSupermercados) {
+		for (int i = 0; i < idsSupermercados.length; i++) {
+			if(!productoEnSupermercado(idProducto, idsSupermercados[i])) {
+				return false; //error en algun insert
+			}
+		}
+		return true;
+	}
+
 
 }
