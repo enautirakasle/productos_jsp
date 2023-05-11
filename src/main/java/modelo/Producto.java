@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Producto {
 	private int id;
 	private String codigo;
@@ -8,6 +10,7 @@ public class Producto {
 	private int cantidad;
 	
 	private Seccion seccion;
+	private ArrayList<Supermercado> supermercados;
 	
 	public int getId() {
 		return id;
@@ -44,6 +47,12 @@ public class Producto {
 	}
 	public void setSeccion(Seccion seccion) {
 		this.seccion = seccion;
+	}
+	public ArrayList<Supermercado> getSupermercados() {
+		return supermercados;
+	}
+	public void setSupermercados(ArrayList<Supermercado> supermercados) {
+		this.supermercados = supermercados;
 	}
 	
 	
