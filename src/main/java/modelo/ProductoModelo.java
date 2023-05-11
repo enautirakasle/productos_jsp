@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 public class ProductoModelo extends Conector {
 
 	public ArrayList<Producto> productos() {
@@ -95,7 +94,7 @@ public class ProductoModelo extends Conector {
 			return false;
 		}
 	}
-	
+
 	public boolean eliminar(int id) {
 		PreparedStatement pst = null;
 		String sql = "DELETE FROM productos WHERE id = ?";
@@ -113,14 +112,14 @@ public class ProductoModelo extends Conector {
 	public boolean buscar(Producto producto) {
 		return false;
 	}
-	
+
 	public Producto get(int id) {
 		String sql = "select * from productos where id = ?";
 		PreparedStatement pst;
 		try {
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, id);
-			
+
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				Producto producto = new Producto();
@@ -132,14 +131,43 @@ public class ProductoModelo extends Conector {
 				Seccion s = new Seccion();
 				s.setId(rs.getInt("id_seccion"));
 				producto.setSeccion(s);
+				producto.setSupermercados(getSupermercados(rs.getInt("id")));
 				return producto;
 			}
-			
+
 			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	private ArrayList<Supermercado> getSupermercados(int idProducto) {
+		ArrayList<Supermercado> supermercados = new ArrayList<Supermercado>();
+		String sql = "select * from productos_supermercados where id_producto = ?";
+		PreparedStatement pst;
+
+		ResultSet rs;
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, idProducto);
+			rs = pst.executeQuery();
+			
+			Supermercado supermercado;
+			while (rs.next()) {
+				supermercado = new Supermercado();
+				supermercado.setId(rs.getInt("id_supermercado"));
+				
+				supermercados.add(supermercado);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return supermercados;
+
+		
+
 	}
 
 	public Producto buscar(String codigo) {
@@ -148,7 +176,7 @@ public class ProductoModelo extends Conector {
 		try {
 			pst = con.prepareStatement(sql);
 			pst.setString(1, codigo);
-			
+
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				Producto producto = new Producto();
@@ -159,7 +187,7 @@ public class ProductoModelo extends Conector {
 				producto.setPrecio(rs.getDouble("precio"));
 				return producto;
 			}
-			
+
 			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -170,7 +198,7 @@ public class ProductoModelo extends Conector {
 	public void insertar(Producto producto) {
 		String sql = "INSERT INTO productos(codigo, nombre, cantidad, precio, id_seccion) VALUES (?, ?, ?, ?, ?)";
 		PreparedStatement pst;
-		
+
 		try {
 			pst = con.prepareStatement(sql);
 			pst.setString(1, producto.getCodigo());
@@ -178,24 +206,23 @@ public class ProductoModelo extends Conector {
 			pst.setInt(3, producto.getCantidad());
 			pst.setDouble(4, producto.getPrecio());
 			pst.setInt(5, producto.getSeccion().getId());
-			
+
 			pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
+
 	public boolean productoEnSupermercado(int idProducto, int idSupermercado) {
 		PreparedStatement pst = null;
 		String sql = "INSERT INTO productos_supermercados (id_producto, id_supermercado) VALUES (?, ?)";
 		try {
 			pst = con.prepareStatement(sql);
-			
+
 			pst.setInt(1, idProducto);
 			pst.setInt(2, idSupermercado);
-			
+
 			pst.execute();
 			return true;
 		} catch (SQLException e) {
@@ -203,15 +230,14 @@ public class ProductoModelo extends Conector {
 			return false;
 		}
 	}
-	
+
 	public boolean productoSupermercados(int idProducto, int[] idsSupermercados) {
 		for (int i = 0; i < idsSupermercados.length; i++) {
-			if(!productoEnSupermercado(idProducto, idsSupermercados[i])) {
-				return false; //error en algun insert
+			if (!productoEnSupermercado(idProducto, idsSupermercados[i])) {
+				return false; // error en algun insert
 			}
 		}
 		return true;
 	}
-
 
 }
