@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.ProductoModelo;
 import modelo.SeccionModelo;
+import modelo.Supermercado;
+import modelo.SupermercadoModelo;
 
 /**
  * Servlet implementation class EditarProducto
@@ -43,6 +47,11 @@ public class EditarProducto extends HttpServlet {
 		sm.conectar();
 		request.setAttribute("secciones", sm.secciones());
 		sm.cerrar();
+		
+		SupermercadoModelo supm = new SupermercadoModelo();
+		supm.conectar();
+		request.setAttribute("supermercados", supm.supermercados());
+		supm.cerrar();
 		
 		//abir vista
 		request.getRequestDispatcher("formEdicion.jsp").forward(request, response);
