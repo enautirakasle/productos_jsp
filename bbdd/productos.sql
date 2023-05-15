@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2023 a las 14:46:53
+-- Tiempo de generación: 15-05-2023 a las 13:07:45
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -49,7 +49,10 @@ INSERT INTO `productos` (`id`, `codigo`, `nombre`, `cantidad`, `precio`, `caduci
 (13, '9999', 'proba9', 23, 23, '2019-12-16', 1),
 (18, '1010', 'proba10', 10, 10, NULL, 3),
 (19, '1100', 'proba11', 222, 11.1, NULL, 2),
-(20, '1222', 'producto12', 12, 12, NULL, 4);
+(20, '1222', 'producto12', 12, 12, NULL, 4),
+(21, '1313', 'producto13', 3, 12.3, NULL, 2),
+(22, '1414', 'pro14', 14, 144.14, NULL, 2),
+(23, '1515', 'pro15', 15, 15.1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -62,6 +65,16 @@ CREATE TABLE `productos_supermercados` (
   `id_producto` int(11) NOT NULL,
   `id_supermercado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos_supermercados`
+--
+
+INSERT INTO `productos_supermercados` (`id`, `id_producto`, `id_supermercado`) VALUES
+(1, 23, 1),
+(2, 23, 4),
+(3, 5, 5),
+(4, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -103,7 +116,8 @@ INSERT INTO `supermercados` (`id`, `nombre`) VALUES
 (1, 'eroski'),
 (2, 'mercadona'),
 (3, 'aldi'),
-(4, 'bm');
+(4, 'bm'),
+(5, 'carrefour');
 
 --
 -- Índices para tablas volcadas
@@ -113,7 +127,8 @@ INSERT INTO `supermercados` (`id`, `nombre`) VALUES
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigo` (`codigo`);
 
 --
 -- Indices de la tabla `productos_supermercados`
@@ -143,13 +158,13 @@ ALTER TABLE `supermercados`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_supermercados`
 --
 ALTER TABLE `productos_supermercados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `secciones`
@@ -161,7 +176,7 @@ ALTER TABLE `secciones`
 -- AUTO_INCREMENT de la tabla `supermercados`
 --
 ALTER TABLE `supermercados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
